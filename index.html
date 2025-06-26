@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beni Seviyor Musun?</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/833/833472.png">
+  <style>
+    .heart {
+      position: fixed;
+      color: red;
+      animation: float 4s linear infinite;
+      font-size: 20px;
+      pointer-events: none;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) scale(1.5);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Beni Seviyor Musun?</h1>
+
+  <img id="loveGif" src="" alt="cute">
+
+  <button id="yesBtn">Evet</button>
+  <button id="noBtn">Hayır</button>
+  <div id="message"></div>
+
+  <!-- Müzik -->
+  <audio id="bgMusic" autoplay loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_f3d85c0d84.mp3?filename=romantic-piano-10957.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const yesBtn = document.getElementById('yesBtn');
+      const noBtn = document.getElementById('noBtn');
+      const message = document.getElementById('message');
+      const gif = document.getElementById('loveGif');
+      const music = document.getElementById('bgMusic');
+      const name = "Aşkımmmmm";
+      let growInterval;
+
+      const gifList = [
+        "https://media.tenor.com/C3chQqM8N-oAAAAi/cute-love.gif",
+        "https://media.tenor.com/ZYwU8pHDWhcAAAAi/love-cute.gif",
+        "https://media.tenor.com/IyloWJ0qk4UAAAAi/bunny-heart.gif",
+        "https://media.tenor.com/xp6JYrK3YPoAAAAi/love-bear-cute.gif"
+      ];
+      gif.src = gifList[Math.floor(Math.random() * gifList.length)];
+
+      function createHeart() {
+        const heart = document.createElement('div');
+        heart.className = 'heart';
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.top = "100vh";
+        heart.innerText = "❤️";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 4000);
+      }
+
+      setInterval(createHeart, 300);
+
+      noBtn.addEventListener('mouseenter', () => {
+        const maxX = window.innerWidth - noBtn.offsetWidth;
+        const maxY = window.innerHeight - noBtn.offsetHeight;
+        const x = Math.random() * maxX;
+        const y = Math.random() * maxY;
+        noBtn.style.left = `${x}px`;
+        noBtn.style.top = `${y}px`;
+      });
+
+      noBtn.addEventListener('click', () => {
+        noBtn.remove();
+        let scale = 1;
+        growInterval = setInterval(() => {
+          scale += 0.05;
+          yesBtn.style.transform = `scale(${scale})`;
+          if (scale >= 20) {
+            clearInterval(growInterval);
+            yesBtn.style.transform = `scale(1)`;
+            yesBtn.style.width = "100vw";
+            yesBtn.style.height = "100vh";
+            yesBtn.style.position = "fixed";
+            yesBtn.style.top = "0";
+            yesBtn.style.left = "0";
+            yesBtn.style.borderRadius = "0";
+            yesBtn.style.fontSize = "32px";
+            yesBtn.innerText = "Evet 😊";
+          }
+        }, 50);
+      });
+
+      yesBtn.addEventListener('click', () => {
+        message.textContent = `${name}, ben de seni çok seviyorum! 💖`;
+        yesBtn.style.display = "none";
+      });
+    });
+  </script>
+
+</body>
+</html>
