@@ -1,0 +1,69 @@
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #ffe6f0;
+    font-family: 'Segoe UI', sans-serif;
+    overflow: hidden;
+}
+
+.container {
+    text-align: center;
+    margin-top: 10vh;
+}
+
+.title {
+    font-size: 3em;
+    color: #e6005c;
+}
+
+.message-top {
+    font-size: 1.2em;
+    color: #99004d;
+    margin-bottom: 40px;
+    font-style: italic;
+}
+
+#buttons {
+    margin-top: 20px;
+}
+
+button {
+    font-size: 1.5em;
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+#yesBtn {
+    background-color: #4CAF50;
+    color: white;
+}
+
+#noBtn {
+    background-color: #9C27B0;
+    color: white;
+    position: relative;
+}
+
+.love-message {
+    font-size: 2em;
+    margin-top: 30px;
+    color: #d10073;
+}
+
+.heart {
+    position: fixed;
+    top: -20px;
+    font-size: 2rem;
+    animation: fall 3s linear forwards;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(100vh);
+        opacity: 0;
+    }
+}

@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beni Seviyor Musun?</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <p class="message-top">Rümeysa, seni tanıdığım günden beri içimde büyüyen bir şey var...<br>
+        Bugün bu soruyu sadece sana, kalbimi en iyi anlayan kişiye soruyorum.</p>
+        <h1 class="title">Beni Seviyor Musun?</h1>
+        <div id="buttons">
+            <button id="yesBtn">Evet</button>
+            <button id="noBtn">Hayır</button>
+        </div>
+        <p id="responseMessage" class="love-message"></p>
+    </div>
+    <audio id="music" src="piano.mp3"></audio>
+
+    <script>
+        const yesBtn = document.getElementById("yesBtn");
+        const noBtn = document.getElementById("noBtn");
+        const responseMessage = document.getElementById("responseMessage");
+        const music = document.getElementById("music");
+
+        let growCount = 1;
+
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.className = "heart";
+            heart.innerText = "❤️";
+            heart.style.left = Math.random() * 100 + "vw";
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 3000);
+        }
+
+        yesBtn.addEventListener("click", () => {
+            responseMessage.textContent = "Aşkımmmmm, ben de seni çok seviyorum! 💖";
+            yesBtn.style.display = "none";
+            noBtn.style.display = "none";
+            music.play();
+            setInterval(createHeart, 300);
+        });
+
+        noBtn.addEventListener("click", () => {
+            growCount += 0.2;
+            yesBtn.style.transform = `scale(${growCount})`;
+            yesBtn.style.transition = "transform 0.3s ease";
+            const newX = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+            const newY = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+            noBtn.style.position = "absolute";
+            noBtn.style.left = `${newX}px`;
+            noBtn.style.top = `${newY}px`;
+        });
+    </script>
+</body>
+</html>
